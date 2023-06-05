@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from projects.urls import urlpatterns
 from django.shortcuts import redirect
+from accounts.urls import urlpattern
 
 urlpatterns = [
     path('', lambda req: redirect('list_projects'), name="home"),
     path("projects/", include(urlpatterns)),
     path("admin/", admin.site.urls),
+    path("accounts/", include(urlpattern))
 ]
