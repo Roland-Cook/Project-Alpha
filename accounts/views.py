@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from accounts.forms import LoginForm, SignUpForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
+
 # Create your views here.
 
 
@@ -18,9 +19,7 @@ def user_login(request):
                 return redirect("home")
     else:
         form = LoginForm()
-    context = {
-        "form": form
-    }
+    context = {"form": form}
     return render(request, "accounts/login.html", context)
 
 
@@ -45,7 +44,5 @@ def user_signup(request):
                 form.add_error("password", "Passwords do not match")
     else:
         form = SignUpForm()
-    context = {
-        "form": form
-    }
+    context = {"form": form}
     return render(request, "accounts/signup.html", context)

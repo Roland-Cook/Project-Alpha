@@ -3,5 +3,5 @@ from django.urls import path
 
 urlpatternss = [
     path("create/", create_task, name="create_task"),
-    path("mine/", task_view, name="show_my_tasks")
+    path("mine/", task_view, name="show_my_tasks"),
 ]

@@ -9,9 +9,7 @@ from projects.forms import CreateProject
 @login_required
 def project_view(request):
     project = Project.objects.filter(owner=request.user)
-    context = {
-        "project": project
-    }
+    context = {"project": project}
     return render(request, "projects/all_projects.html", context)
 
 
@@ -19,9 +17,7 @@ def project_view(request):
 def project_detail(request, id):
     # recipe=Recipe.objects.get(id=id)
     project = get_object_or_404(Project.objects, id=id)
-    context = {
-        "project": project
-    }
+    context = {"project": project}
     return render(request, "projects/detail.html", context)
 
 
@@ -34,7 +30,5 @@ def create_project(request):
             return redirect("list_projects")
     else:
         form = CreateProject()
-    context = {
-        "form": form
-            }
+    context = {"form": form}
     return render(request, "projects/create.html", context)

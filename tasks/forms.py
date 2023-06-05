@@ -5,10 +5,4 @@ from django.forms import ModelForm
 class CreateTask(ModelForm):
     class Meta:
         model = Task
-        fields = [
-            "name",
-            "start_date",
-            "due_date",
-            "assignee",
-            "project"
-        ]
+        fields = ["name", "start_date", "due_date", "assignee", "project"]

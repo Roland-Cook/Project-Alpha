@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from tasks.forms import CreateTask
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from tasks.models import Task
 
 
 # Create your views here.
+
 
 @login_required
 def create_task(request):
@@ -16,9 +16,7 @@ def create_task(request):
             return redirect("list_projects")
     else:
         form = CreateTask()
-    context = {
-        "form": form
-            }
+    context = {"form": form}
     return render(request, "tasks/create_tasks.html", context)
 
 

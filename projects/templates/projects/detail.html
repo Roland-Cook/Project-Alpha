@@ -1,59 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
         <header>
             <nav>
                 <ul>
                     {% if user.is_authenticated %}
-                    <li> <a href="{% url 'show_my_tasks' %}">  My tasks </a></li>
-                    <li> <a href="{% url 'list_projects' %}">  My projects</a></li>
-                    <li> <a href="{% url 'logout' %}">  Logout</a></li>
+                        <li>
+                            <a href="{% url 'show_my_tasks' %}">My tasks</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'list_projects' %}">My projects</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </li>
                     {% else %}
-                    <li> <a href="{% url 'login' %}"> Login </a></li>
-                    <li> <a href="{% url 'signup' %}"> Signup</a></li>
+                        <li>
+                            <a href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'signup' %}">Signup</a>
+                        </li>
                     {% endif %}
                 </ul>
             </nav>
         </header>
-
-
-    <main>
-        <h1>{{project.name}}</h1>
-        <h2>{{project.description}}</h2>
-        <h2>Tasks</h2>
-        <p> <a href="{% url 'create_task' %}"> Create a new task </a> </p> 
-        {% if project.tasks.all|length == 0 %}
-        <p>This project has no tasks</p>
-        {%else%}
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Assignee</th>
-                <th>Start date</th>
-                <th>Due date</th>
-                <th>Is completed</th>
-            </thead>
-
-            <tbody>
-                {% for item in project.tasks.all %}
-                <tr> 
-                    <td> {{item.name}} </td>
-                    <td> {{item.assignee}} </td>
-                    <td>{{item.start_date}}  </td>
-                    <td> {{item.due_date}} </td>
-                    <td> {{item.iscompleted|yesno}}  </td>
-                </tr>
-                {%endfor%}
-            </tbody>
-        </table>
-        {% endif %}
-
-    </main>
-</body>
+        <main>
+            <h1>{{ project.name }}</h1>
+            <h2>{{ project.description }}</h2>
+            <h2>Tasks</h2>
+            <p>
+                <a href="{% url 'create_task' %}">Create a new task</a>
+            </p>
+            {% if project.tasks.all|length == 0 %}
+                <p>This project has no tasks</p>
+            {% else %}
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Assignee</th>
+                        <th>Start date</th>
+                        <th>Due date</th>
+                        <th>Is completed</th>
+                    </thead>
+                    <tbody>
+                        {% for item in project.tasks.all %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.assignee }}</td>
+                                <td>{{ item.start_date }}</td>
+                                <td>{{ item.due_date }}</td>
+                                <td>{{ item.iscompleted|yesno }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </main>
+    </body>
 </html>
